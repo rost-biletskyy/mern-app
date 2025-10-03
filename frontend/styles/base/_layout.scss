@@ -1,0 +1,50 @@
+
+@use "../settings" as *;
+
+html, body, #__next { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: $font-family;
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 40px auto;
+  padding: 0 var(--hpad);
+}
+
+.hstack { display: flex; align-items: center; gap: 12px; }
+.spacer { flex: 1; }
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+
+.badge {
+  background: rgba(0,137,250,.25);
+  color: var(--accent);
+  border: 1px solid rgba(0,137,250,.25);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+.badge--admin {
+  background: rgba($badge-admin, .18);
+  border-color: rgba($badge-admin, .28);
+  color: $badge-admin;
+}
+.badge--member {
+  background: rgba($badge-member, .18);
+  border-color: rgba($badge-member, .28);
+  color: $badge-member;
+}

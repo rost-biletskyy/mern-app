@@ -1,0 +1,77 @@
+@use "../../styles/settings" as *;
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 12px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+/* style inputs WITHOUT needing classes, like your old markup */
+.row input {
+  flex: 1 1 0;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 0 10px;
+  font-size: 15px;
+  box-shadow: var(--elev-1);
+}
+.row input::placeholder {
+  color: var(--muted);
+}
+.row input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+}
+.btnPrimary:hover {
+  filter: brightness(1.05);
+}
+
+.btnCancel {
+  background: #ff0000;
+  color: #fff;
+  border: 0;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+}
+.btnCancel:hover {
+  filter: brightness(1.05);
+}
+
+.btnSearch {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+}
+.btnSearch:hover {
+  filter: brightness(1.05);
+}
+

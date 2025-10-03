@@ -1,0 +1,18 @@
+.toggle { display: flex; gap: 10px; align-items: center; }
+
+.dot {
+  width: 18px; height: 18px; border-radius: 999px;
+  border: 2px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+}
+
+.purple { background: #7c3aed; border-color: transparent; }
+.dark   { background: #0b0c14; }
+.light  { background: #ffffff; }
+
+.active, .dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

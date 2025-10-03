@@ -1,0 +1,28 @@
+@use "./token" as *;
+
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --elev-1: #{$shadow-light};
+  --accent: #{$accent};
+  --remove: #{$error};
+  --error: #{$error};
+  --radius: #{$radius};
+  --maxw: #{$max-width};
+  --hpad: #{$hpad};
+}
+
+:root[data-theme="dark"] {
+  --bg: #191a23;
+  --card: #262833;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #2f3343;
+  --elev-1: #{$shadow-dark};
+  --accent: #{$accent};
+  --remove: #{$error};
+  --error: #{$error};
+}

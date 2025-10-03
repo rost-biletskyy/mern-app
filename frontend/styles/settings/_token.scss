@@ -1,0 +1,19 @@
+$max-width: 1080px;
+$hpad: 20px;
+$radius: 12px;
+
+$font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+
+$shadow-light: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.04);
+$shadow-dark: 0 6px 16px rgba(0, 0, 0, 0.35);
+
+/* … existing tokens … */
+
+$badge-admin: #6f00ff !default;
+$badge-member: #00c853 !default;
+
+$accent: #6f00ff;
+$error: #ff0000;
+$admin: #6f00ff;
+$member: #00ff2a;
