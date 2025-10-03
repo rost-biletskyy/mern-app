@@ -12,25 +12,29 @@ Socket.IO (real-time communication)
 JWT Authentication (planned)
 Role management (admin / member)
 
+## 📂 Project Structure
+
+```bash
 chat-app/
- ├── backend/                # Express + MongoDB server
- │   ├── src/                # Controllers, models, routes, sockets
- │   ├── .env                # Backend environment variables
- │   ├── package.json
- │   └── tsconfig.json
- │
- ├── frontend/               # Next.js frontend
- │   ├── app/                # Pages & layouts
- │   ├── components/         # Reusable UI components
- │   ├── lib/                # API helpers
- │   ├── styles/             # Global + module styles
- │   ├── .env.local          # Frontend environment variables
- │   ├── next.config.ts
- │   ├── package.json
- │   └── tsconfig.json
- │
- ├── .gitignore        # Root gitignore (ignores node_modules etc.)
- └── README.md         # README
+├── backend/                 # Express + MongoDB server
+│   ├── src/                 # Controllers, models, routes, sockets
+│   ├── .env                 # Backend environment variables
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── frontend/                # Next.js frontend
+│   ├── app/                 # Pages & layouts
+│   ├── components/          # Reusable UI components
+│   ├── lib/                 # API helpers
+│   ├── styles/              # Global + module styles
+│   ├── .env.local           # Frontend environment variables
+│   ├── next.config.ts
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── .gitignore               # Root gitignore (ignores node_modules etc.)
+└── README.md                # Documentation
+```
 
 ##Features
  
