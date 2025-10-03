@@ -44,17 +44,6 @@ Avatars from user initials + random background color
 Dark theme UI
 Real-time chat (via Socket.IO, upcoming)
 OAuth / JWT login (planned)
+User CRUD + roles
 
-##Roadmap
 
-✅ User CRUD + roles
-
-✅ Avatars
-
-⏳ Socket.IO real-time chat
-
-⏳ JWT/OAuth authentication
-
-⏳ Group chat & admin tools
-
-⏳ Deployment (Vercel + Render/Heroku)
