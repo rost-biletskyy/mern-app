@@ -41,16 +41,11 @@ export default function UserForm({ onSubmit, user, onCancel }: Props) {
             required
           />
           <button className={s.btnPrimary} type="submit">
-            {user ? <UserPen size={18} /> : <UserRoundPlus size={18} />}
+            {user ? <UserPen size={18} /> : <UserRoundPlus size={18} suppressHydrationWarning />}
           </button>
           {user && onCancel && (
-            <button
-              type="button"
-              className={s.btnCancel}
-              onClick={onCancel}
-              aria-label="Cancel"
-            >
-              <UserRoundX size={18}/>
+            <button type="button" className={s.btnCancel} onClick={onCancel} aria-label="Cancel">
+              <UserRoundX size={18} />
             </button>
           )}
         </div>
@@ -58,9 +53,9 @@ export default function UserForm({ onSubmit, user, onCancel }: Props) {
       <button
         type="button"
         className={s.btnSearch}
-        //Search Logic by name email ... 
+        //Search Logic by name email ...
       >
-        <Search size={18} />
+        <Search size={18} suppressHydrationWarning />
       </button>
     </div>
   );
