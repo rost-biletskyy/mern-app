@@ -1,0 +1,23 @@
+# .github/workflows/docker-build.yml
+name: Build and Run Docker
+
+on:
+  push:
+    branches: [ "main" ]   # runs only when you push to main branch
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest   # GitHub gives you a Linux VM
+    
+    steps:
+      # 1. Checkout your repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Build the Docker image
+      - name: Build Docker image
+        run: docker build -t chat-app:v1 .
+
+      # 3. Run the container
+      - name: Run Docker container
+        run: docker run --rm chat-app:v1
