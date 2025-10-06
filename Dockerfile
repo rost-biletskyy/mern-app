@@ -42,7 +42,7 @@ FROM base AS backend
 COPY backend/package*.json ./
 
 # Install dependencies
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Copy backend source code
 COPY backend/. .
