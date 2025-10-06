@@ -1,29 +1,8 @@
-Frontend 
+Frontend: Next.js (React 18 + TypeScript), SCSS / PostCSS, React Hot Toast, Socket.IO client
 
-Framework: Next.js (React 18 + TypeScript) (App Router, React 18 features)
-Language: TypeScript (strict mode enabled)
-Styling: SCSS Modules + PostCSS pipeline
-Notifications: React Hot Toast for global UX feedback
-Real-time: Socket.IO client for instant messaging updates
+Backend: Node.js, Express, MongoDB (Mongoose), Socket.IO, dotenv, Swagger, JWT (planned)
 
-
-Backend
-
-Framework:  Node.js + Express (RESTful API)
-Database: MongoDB + Mongoose ODM
-Real-time: Socket.IO integrated server-side
-Environment: dotenv configuration with typed env validation
-Authentication: JWT-based (planned for next phase)
-Role Management: Admin / Member model
-Documentation: Swagger UI for interactive API docs
-
-DevOps / Tooling
-
-Docker: containerized fullstack environment (frontend + backend services)
-Jira: issue tracking, sprint planning, and task flow
-npm / yarn: dependency and build management
-Nodemon / Turbopack: fast reload for backend/frontend
-ESLint + Prettier: (optional) maintain code style consistency
+DevOps: Docker, Jira, npm / yarn, Nodemon / Turbopack, ESLint / Prettier
 
 ## 📂 Project Structure
 
