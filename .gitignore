@@ -1,11 +1,11 @@
 # dependencies
-node_modules/
 **/node_modules/
 
 # build output
 .next/
 dist/
 build/
+db/
 
 # env files
 .env
@@ -15,7 +15,8 @@ build/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+pnpm-debu
 
 # misc
 .DS_Store
+README.Docker.md
