@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      context: .                   # Root folder
+      dockerfile: Dockerfile       # Single Dockerfile in root
+      target: frontend             # We'll define a multi-stage build target
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:3000"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"

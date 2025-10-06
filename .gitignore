@@ -19,5 +19,4 @@ pnpm-debu
 
 # misc
 .DS_Store
-compose.yaml
 README.Docker.md

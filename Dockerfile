@@ -1,38 +1,58 @@
 # syntax=docker/dockerfile:1
 
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Dockerfile reference guide at
-# https://docs.docker.com/go/dockerfile-reference/
-
-# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
-
 ARG NODE_VERSION=24.9.0
 
-FROM node:${NODE_VERSION}-alpine
+# ----------------------------
+# Base stage (shared dependencies)
+# ----------------------------
+FROM node:${NODE_VERSION}-alpine AS base
 
-# Use production node environment by default.
-ENV NODE_ENV production
-
-
+# Set working directory
 WORKDIR /usr/src/app
 
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.npm to speed up subsequent builds.
-# Leverage a bind mounts to package.json and package-lock.json to avoid having to copy them into
-# into this layer.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
+# Use production node environment
+ENV NODE_ENV=production
+
+# Set up a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
+# ----------------------------
+# Frontend stage
+# ----------------------------
+FROM base AS frontend
+
+# Mount frontend package files and install dependencies
+RUN --mount=type=bind,source=frontend/package.json,target=package.json \
+    --mount=type=bind,source=frontend/package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/home/appuser/.npm \
     npm ci --omit=dev
 
-# Run the application as a non-root user.
-USER node
+# Copy frontend source code
+COPY frontend/. .
 
-# Copy the rest of the source files into the image.
-COPY . .
+# Expose frontend port
+EXPOSE 3000
 
-# Expose the port that the application listens on.
+# Command to run frontend
+CMD ["npm", "run", "dev"]
+
+# ----------------------------
+# Backend stage
+# ----------------------------
+FROM base AS backend
+
+# Mount backend package files and install dependencies
+RUN --mount=type=bind,source=backend/package.json,target=package.json \
+    --mount=type=bind,source=backend/package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/home/appuser/.npm \
+    npm ci --omit=dev
+
+# Copy backend source code
+COPY backend/. .
+
+# Expose backend port
 EXPOSE 5000
 
-# Run the application.
-CMD npm run dev
+# Command to run backend
+CMD ["npm", "run", "dev"]
