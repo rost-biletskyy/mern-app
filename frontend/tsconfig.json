@@ -19,6 +19,8 @@
       "@/*": ["./*"],
       "@lib/*": ["lib/*"],
       "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types/*": ["types/*"],
       "@table/*": ["components/table/*"],
       "@form/*": ["components/form/*"],
       "@theme/*": ["components/theme/*"],
