@@ -1,4 +1,4 @@
-Frontend
+Frontend:
 
 Next.js (React 18 + TypeScript)
 SCSS / PostCSS
@@ -37,7 +37,7 @@ chat-app/
 ```
 
 ##Features
- 
+
 User management (create, edit, delete)
 Roles: Admin / Member
 Avatars from user initials + random background color
@@ -45,5 +45,3 @@ Dark theme UI
 Real-time chat (via Socket.IO, upcoming)
 OAuth / JWT login (planned)
 User CRUD + roles
-
-
