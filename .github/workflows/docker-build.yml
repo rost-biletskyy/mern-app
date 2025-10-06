@@ -1,0 +1,33 @@
+# .github/workflows/docker-build.yml
+name: Build and Run Docker with Compose
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout your repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Docker Compose
+      - name: Set up Docker Compose
+        uses: docker/setup-buildx-action@v3
+
+      # 3. Create a .env file from GitHub Secrets
+      - name: Create .env file
+        run: |
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+
+      # 4. Build and run services with Docker Compose
+      - name: Build and run containers
+        run: |
+          docker compose up --build -d
+
+      # 5. Optional: check logs to ensure backend started
+      - name: Show logs
+        run: docker compose logs -f
