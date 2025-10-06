@@ -1,23 +1,33 @@
 # .github/workflows/docker-build.yml
-name: Build and Run Docker
+name: Build and Run Docker with Compose
 
 on:
   push:
-    branches: [ "main" ]   # runs only when you push to main branch
+    branches: [ "main" ]
 
 jobs:
   docker:
     runs-on: ubuntu-latest
-    
+
     steps:
       # 1. Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Build the Docker image
-      - name: Build Docker image
-        run: docker build -t chat-app:v1 .
+      # 2. Set up Docker Compose
+      - name: Set up Docker Compose
+        uses: docker/setup-buildx-action@v3
 
-      # 3. Run the container with environment variables from GitHub Secrets
-      - name: Run Docker container
-        run: docker run --rm -e MONGO_URI=${{ secrets.MONGO_URI }} chat-app:v1
+      # 3. Create a .env file from GitHub Secrets
+      - name: Create .env file
+        run: |
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+
+      # 4. Build and run services with Docker Compose
+      - name: Build and run containers
+        run: |
+          docker-compose up --build -d
+
+      # 5. Optional: check logs to ensure backend started
+      - name: Show logs
+        run: docker-compose logs -f
