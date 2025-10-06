@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getUsers, createUser, updateUser, deleteUser, User } from "@lib/api";
+import { getUsers, createUser, updateUser, deleteUser } from "@lib/api";
 import { useRouter } from "next/navigation";
 import UserForm from "@components/form/UserForm";
 import usersTable from "./UsersTable.module.scss";
@@ -11,6 +11,7 @@ import {
   MessageSquare,
   ContactRound,
 } from "lucide-react";
+import { User } from "@/types/user";
 
 function Avatar({ name, size = 28 }: { name: string; size?: number }) {
   const bg = stringToColor(name || "?");
@@ -68,7 +69,7 @@ export default function UsersTable() {
     try {
       await createUser({
         ...user,
-        role: user.role ?? "user",
+        role: user.role ?? "MEMBER",
       });
       toast.success(`User created: ${user.name} / ${user.email}`);
       refreshUsers();
@@ -147,7 +148,7 @@ export default function UsersTable() {
               <td className="flex items-center gap-2">{user.name}</td>
               <td>{user.email}</td>
               <td>
-                {user.role === "admin" ? (
+                {user.role === "ADMIN" ? (
                   <span className="badge badge--admin">ADMIN</span>
                 ) : (
                   <span className="badge badge--member">MEMBER</span>
