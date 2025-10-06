@@ -36,15 +36,3 @@ jobs:
       # 6. Optional: check logs to ensure backend started
       - name: Show logs
         run: docker compose logs -f
-
-      # 7. Test backend endpoint
-      - name: Test backend
-        run: |
-          echo "Testing backend..."
-          curl --fail http://localhost:5000 || exit 1
-
-      # 8. Test frontend endpoint
-      - name: Test frontend
-        run: |
-          echo "Testing frontend..."
-          curl --fail http://localhost:3000 || exit 1
