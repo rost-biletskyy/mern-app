@@ -18,16 +18,21 @@ jobs:
       - name: Set up Docker Compose
         uses: docker/setup-buildx-action@v3
 
-      # 3. Create a .env file from GitHub Secrets
-      - name: Create .env file
+      # 3. Create backend .env from GitHub Secrets
+      - name: Create backend .env
         run: |
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" > backend/.env
 
-      # 4. Build and run services with Docker Compose
+      # 4. Create frontend .env from GitHub Secrets
+      - name: Create frontend .env
+        run: |
+          echo "NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }}" > frontend/.env
+
+      # 5. Build and run services with Docker Compose
       - name: Build and run containers
         run: |
           docker compose up --build -d
 
-      # 5. Optional: check logs to ensure backend started
+      # 6. Optional: check logs to ensure backend started
       - name: Show logs
         run: docker compose logs -f
