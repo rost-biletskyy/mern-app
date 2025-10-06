@@ -1,25 +1,24 @@
+import { User } from "@/types/user";
 import { http } from "./http";
 
-export type User = {
-  _id: string;
-  name: string;
-  email: string;
-  role?: "admin" | "user";
-  avatar?: string;
-};
-
-export async function getUsers() {
+export async function getUsers(): Promise<User[]> {
   const { data } = await http.get<User[]>("/users");
   return data;
 }
-export async function createUser(user: Omit<User, "_id">) {
+
+export async function createUser(user: Omit<User, "_id">): Promise<User> {
   const { data } = await http.post<User>("/users", user);
   return data;
 }
-export async function updateUser(id: string, user: Partial<User>) {
+
+export async function updateUser(
+  id: string,
+  user: Partial<User>
+): Promise<User> {
   const { data } = await http.put<User>(`/users/${id}`, user);
   return data;
 }
-export async function deleteUser(id: string) {
+
+export async function deleteUser(id: string): Promise<void> {
   await http.delete(`/users/${id}`);
 }
