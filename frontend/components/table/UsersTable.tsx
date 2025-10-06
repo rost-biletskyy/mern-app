@@ -1,27 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getUsers, createUser, updateUser, deleteUser, User } from "@lib/api";
+import { useRouter } from "next/navigation";
 import UserForm from "@components/form/UserForm";
+import usersTable from "./UsersTable.module.scss";
+import toast from "react-hot-toast";
 import {
   UserRoundX,
   UserRoundPen,
   MessageSquare,
   ContactRound,
 } from "lucide-react";
-import usersTable from "./UsersTable.module.scss";
-import toast from "react-hot-toast";
-
-function stringToColor(str: string) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return `hsl(${hash % 360}, 70%, 50%)`;
-}
 
 function Avatar({ name, size = 28 }: { name: string; size?: number }) {
   const bg = stringToColor(name || "?");
   const letter = name?.charAt(0)?.toUpperCase() || "?";
+ 
+  function stringToColor(str: string) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return `hsl(${hash % 360}, 70%, 50%)`;
+  }
+
   return (
     <div
       style={{
@@ -43,8 +45,13 @@ function Avatar({ name, size = 28 }: { name: string; size?: number }) {
 }
 
 export default function UsersTable() {
+  const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
+
+  function handleOpenChat(user: User) {
+    router.push(`/chat/${user._id}`);
+  }
 
   useEffect(() => {
     refreshUsers();
@@ -122,7 +129,7 @@ export default function UsersTable() {
       <table className={usersTable.table}>
         <thead>
           <tr>
-            <th style={{ width: 40 }}/>
+            <th style={{ width: 40 }} />
             <th style={{ width: 220 }}>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -165,6 +172,7 @@ export default function UsersTable() {
                 <button
                   className={`${usersTable.iconBtn} ${usersTable.chat}`}
                   aria-label="Chat"
+                  onClick={() => handleOpenChat(user)}
                 >
                   <MessageSquare size={20} />
                 </button>

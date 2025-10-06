@@ -7,7 +7,7 @@ export default function Page() {
     <div className="container">
       <div className="hstack" style={{ marginBottom: 14 }}>
         <span className="badge badge--admin">ADMIN</span>
-        {/* <span className="badge badge--member">MEMBER</span> */}
+        <span className="badge badge--member">MEMBER</span>
 
         <div className="spacer" />
         <ThemeToggle />
