@@ -22,7 +22,7 @@ FROM base AS frontend
 COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Copy frontend source code
 COPY frontend/. .
