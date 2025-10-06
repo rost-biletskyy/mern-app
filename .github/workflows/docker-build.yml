@@ -21,6 +21,5 @@ jobs:
       # 3. Run the container with environment variables from GitHub Secrets
       - name: Run Docker container
         run: |
-          docker run --rm \
-            -e MONGO_URI=${{ secrets.MONGO_URI }}
+          docker run --rm -e MONGO_URI=${{ secrets.MONGO_URI }}
             chat-app:v1
