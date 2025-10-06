@@ -13,20 +13,16 @@ WORKDIR /usr/src/app
 # Use production node environment
 ENV NODE_ENV=production
 
-# Set up a non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
-
 # ----------------------------
 # Frontend stage
 # ----------------------------
 FROM base AS frontend
 
-# Mount frontend package files and install dependencies
-RUN --mount=type=bind,source=frontend/package.json,target=package.json \
-    --mount=type=bind,source=frontend/package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/home/appuser/.npm \
-    npm ci --omit=dev
+# Copy frontend package files and install dependencies as root
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci --omit=dev
 
 # Copy frontend source code
 COPY frontend/. .
@@ -42,11 +38,11 @@ CMD ["npm", "run", "dev"]
 # ----------------------------
 FROM base AS backend
 
-# Mount backend package files and install dependencies
-RUN --mount=type=bind,source=backend/package.json,target=package.json \
-    --mount=type=bind,source=backend/package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/home/appuser/.npm \
-    npm ci --omit=dev
+# Copy backend package files and install dependencies as root
+COPY backend/package*.json ./
+
+# Install dependencies
+RUN npm ci --omit=dev
 
 # Copy backend source code
 COPY backend/. .
