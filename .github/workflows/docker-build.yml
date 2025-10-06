@@ -3,27 +3,27 @@ name: Build and Push Docker Images
 
 on:
   push:
-    branches: [ "main", "dev"  ]
+    branches: [ "main", "dev" ]
 
 jobs:
   docker:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout your repository
+      # 1. Checkout repository
       - name: Checkout code
         uses: actions/checkout@v5
 
-      # 2. Set up Docker Buildx (for multi-platform builds)
+      # 2. Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
-      
-      # 3. Log in to Docker Hub using GitHub Secrets
+
+      # 3. Log in to Docker Hub using GitHub vars and secrets
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.DOCKERHUB_USERNAME}}
-          password: ${{secrets.DOCKERHUB_TOKEN}}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # 4. Create backend .env file
       - name: Create backend .env
@@ -35,18 +35,18 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }}" > frontend/.env
 
-      # 6. Build and tag Docker images (frontend + backend)
+      # 6. Build Docker images (frontend + backend)
       - name: Build Docker images
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest --target frontend .
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest --target backend .
+          docker build -t ${{ vars.DOCKERHUB_USERNAME }}/mern-frontend:latest --target frontend .
+          docker build -t ${{ vars.DOCKERHUB_USERNAME }}/mern-backend:latest --target backend .
 
-      # 7. Push images to Docker Hub
+      # 7. Push Docker images to Docker Hub
       - name: Push Docker images
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/mern-frontend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/mern-backend:latest
 
-      # 8. Show logs for confirmation
+      # 8. Show local Docker images for confirmation
       - name: Show Docker images
         run: docker images
