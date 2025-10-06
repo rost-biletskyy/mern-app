@@ -3,34 +3,28 @@
 ARG NODE_VERSION=24.9.0
 
 # ----------------------------
-# Base stage (shared dependencies)
+# Base stage
 # ----------------------------
 FROM node:${NODE_VERSION}-alpine AS base
 
-# Set working directory
 WORKDIR /usr/src/app
 
-# Use production node environment
-ENV NODE_ENV=production
+# Remove NODE_ENV=production for dev containers
+# ENV NODE_ENV=production  <-- remove this line for dev
 
 # ----------------------------
 # Frontend stage
 # ----------------------------
 FROM base AS frontend
 
-# Copy frontend package files and install dependencies as root
 COPY frontend/package*.json ./
 
-# Install dependencies
+# Install all dependencies including dev
 RUN npm ci
 
-# Copy frontend source code
 COPY frontend/. .
 
-# Expose frontend port
 EXPOSE 3000
-
-# Command to run frontend
 CMD ["npm", "run", "dev"]
 
 # ----------------------------
@@ -38,17 +32,12 @@ CMD ["npm", "run", "dev"]
 # ----------------------------
 FROM base AS backend
 
-# Copy backend package files and install dependencies as root
 COPY backend/package*.json ./
 
-# Install dependencies
+# Install all dependencies including dev
 RUN npm ci
 
-# Copy backend source code
 COPY backend/. .
 
-# Expose backend port
 EXPOSE 5000
-
-# Command to run backend
 CMD ["npm", "run", "dev"]
