@@ -1,4 +1,4 @@
-Frontend
+Frontend:
 
 Next.js (React 18 + TypeScript)
 SCSS / PostCSS
