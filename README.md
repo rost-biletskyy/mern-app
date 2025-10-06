@@ -1,4 +1,4 @@
-Frontend:
+Frontend
 
 Next.js (React 18 + TypeScript)
 SCSS / PostCSS
@@ -11,6 +11,9 @@ MongoDB + Mongoose
 Socket.IO (real-time communication)
 JWT Authentication (planned)
 Role management (admin / member)
+
+Devops 
+Docker 
 
 ## 📂 Project Structure
 
