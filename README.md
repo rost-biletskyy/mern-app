@@ -13,6 +13,7 @@ JWT Authentication (planned)
 Role management (admin / member)
 
 Devops 
+
 Docker 
 
 ## 📂 Project Structure
