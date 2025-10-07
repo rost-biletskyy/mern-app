@@ -1,16 +1,8 @@
-Frontend:
+Frontend: Next.js (React 18 + TypeScript), SCSS / PostCSS, React Hot Toast, Socket.IO client
 
-Next.js (React 18 + TypeScript)
-SCSS / PostCSS
-React Hot Toast (notifications)
+Backend: Node.js, Express, MongoDB (Mongoose), Socket.IO, dotenv, Swagger, JWT (planned)
 
-Backend
-
-Node.js + Express
-MongoDB + Mongoose
-Socket.IO (real-time communication)
-JWT Authentication (planned)
-Role management (admin / member)
+DevOps: Docker, Jira, npm , Nodemon / Turbopack, Prettier
 
 ## 📂 Project Structure
 
