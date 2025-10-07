@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
-import User from "../models/User";
+import { User } from "../models/User.model";
 
-export const getUsers = async (_req: Request, res: Response) => {
-  const users = await User.find();
-  res.json(users);
-};
+export async function getUsers(req: Request, res: Response) {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ message: "Server error while fetching users" });
+  }
+}
 
 export const createUser = async (req: Request, res: Response) => {
   try {
