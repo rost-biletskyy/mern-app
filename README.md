@@ -2,7 +2,7 @@ Frontend: Next.js (React 18 + TypeScript), SCSS / PostCSS, React Hot Toast, Sock
 
 Backend: Node.js, Express, MongoDB (Mongoose), Socket.IO, dotenv, Swagger, JWT (planned)
 
-DevOps: Docker, Jira, npm / yarn, Nodemon / Turbopack, ESLint / Prettier
+DevOps: Docker, Jira, npm , Nodemon / Turbopack, Prettier
 
 ## 📂 Project Structure
 
